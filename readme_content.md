@@ -311,13 +311,6 @@ copies of the Software, subject to the following conditions...
 
 ---
 
-## 🤝 Support & Community
-
-- **GitHub Issues:** Report bugs and request features
-- **Discord Community:** Join our security community
-- **Email Support:** support@cybersecmult.dev
-- **Security Contact:** security@cybersecmult.dev
-
 ---
 
 ## 🎖️ Version History
