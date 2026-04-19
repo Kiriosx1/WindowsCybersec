@@ -1,0 +1,60 @@
+cmake_minimum_required(VERSION 3.20)
+project(CyberSecMultitool VERSION 4.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# ── Release optimisations ────────────────────────────────────────────────────
+if(MSVC)
+    add_compile_options(/O2 /W4 /WX- /MP /DWIN32_LEAN_AND_MEAN /D_WIN32_WINNT=0x0A00)
+    # Enable C++20 features
+    add_compile_options(/std:c++20)
+else()
+    add_compile_options(-O2 -Wall -Wextra -D_WIN32_WINNT=0x0A00)
+endif()
+
+# ── Source files ─────────────────────────────────────────────────────────────
+set(SOURCES
+    main.cpp                  # Updated v4.0 entry point (rename main_v4.cpp → main.cpp)
+)
+
+set(HEADERS
+    cybersec_core.hpp         # Core: logger, thread pool, exceptions, colours
+    ui.hpp                    # Menu dispatch (original)
+    system_monitor.hpp        # PDH system stats
+    network_scanner.hpp       # Port scanner, SSL, DNS
+    crypto_engine.hpp         # AES/RSA/SHA via BCrypt CNG
+    forensics.hpp             # Memory dump, process analysis
+    secure_file_ops.hpp       # Encrypted file operations
+    # ── v4.0 new modules ────────────────────────────────────────────────────
+    steganography.hpp         # Glaux integration — LSB BMP steganography
+    threat_intel.hpp          # IOC manager, entropy, hollowing, OSINT
+    password_auditor.hpp      # NIST password scoring, wordlist attack
+    privesc_checker.hpp       # PrivEsc vectors, hardening advisor
+    network_defense.hpp       # ARP, connection monitor, poisoning risks
+)
+
+add_executable(CyberSecMultitool ${SOURCES} ${HEADERS})
+
+# ── Windows system libraries ─────────────────────────────────────────────────
+target_link_libraries(CyberSecMultitool PRIVATE
+    ws2_32          # Winsock
+    iphlpapi        # IP Helper API (ARP, adapters, TCP table)
+    psapi           # Process status API
+    advapi32        # Registry, tokens, CryptAPI
+    netapi32        # NetBIOS, network management
+    pdh             # Performance Data Helper (system monitor)
+    ole32           # COM (firewall query)
+    comsupp         # COM support
+)
+
+# ── Output directory ─────────────────────────────────────────────────────────
+set_target_properties(CyberSecMultitool PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Release"
+    OUTPUT_NAME "CyberSecMultitool"
+)
+
+# ── Install ──────────────────────────────────────────────────────────────────
+install(TARGETS CyberSecMultitool DESTINATION bin)
+install(FILES ${HEADERS} DESTINATION include/cybersecmult)
