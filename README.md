@@ -421,7 +421,7 @@ Each module follows the same pattern: a class with static methods + an inline `s
 
 ---
 
-Made with ❤️ and way too much coffee by **Kiriosx1**  
+Made with ❤️ by **Kiriosx1**  
 *Securing the digital world, one module at a time.*
 
 ```
