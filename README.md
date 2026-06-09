@@ -36,9 +36,9 @@ v4.0 is a major update introducing **5 new security modules** including native i
 ║  5.  🔑  Cryptographic Tools                                       ║
 ║  6.  🔍  Forensics & Analysis                                      ║
 ║                                                                    ║
-║  ─────────────────── NEW IN v4.0 ──────────────────────           ║
+║  ─────────────────── NEW IN v4.0 ──────────────────────            ║
 ║                                                                    ║
-║  8.  🦉  Steganography Engine (Glaux integration)                  ║
+║  8.  🦉  Steganography Engine (Glaux integration)                   ║
 ║  9.  🕵️   Threat Intelligence & OSINT                              ║
 ║  10. 🔓  Password Audit & Hash Cracker                             ║
 ║  11. 💀  PrivEsc Scanner & Hardening Advisor                       ║
